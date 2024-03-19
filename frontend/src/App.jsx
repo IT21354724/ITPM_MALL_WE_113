@@ -19,7 +19,7 @@ import Footer from './components/Footer/Footer'
         <Route path='/ContactUs' element={<ContactUs/>}  />
 
       </Routes>
-       
+      <Footer />
       
      </div>
    )
