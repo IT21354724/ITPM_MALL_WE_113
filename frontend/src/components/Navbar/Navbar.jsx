@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menu, setMenu] = useState("menu");
@@ -17,19 +18,31 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav text-white"> {/* Add text-white class */}
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="#">Home</a>
+            <Link to="/Home" className="nav-link fs-6" aria-current="page">Home</Link> {/* Added fs-4 class for font size */}
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">ContactUs</a>
+            <Link to="/AboutUs" className="nav-link fs-6" aria-current="page">AboutUs</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Pricing</a>
+            <Link to="/ContactUs" className="nav-link fs-6" aria-current="page">ContactUs</Link>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link fs-6" href="#">Shopping</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link fs-6" href="#">Food & Beverages</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link fs-6" href="#">Events</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link fs-6" href="#">Games & Entertainment</a>
             </li>
           </ul>
         </div>
         <div className="d-flex">
-          <button className="btn btn-outline-primary me-2 text-white">Register</button> {/* Add text-white class */}
-          <button className="btn btn-outline-success text-white">Login</button> {/* Add text-white class */}
+          <button className="btn btn-outline-primary me-2 text-white fs-6">Register</button>
+          <button className="btn btn-outline-success text-white fs-6">Login</button>
         </div>
       </div>
     </nav>

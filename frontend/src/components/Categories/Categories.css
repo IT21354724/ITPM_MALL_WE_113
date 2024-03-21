@@ -7,4 +7,9 @@
  .row > div[class*='col-'] {
    display: flex;
  }
+  
+ .card-img-top img-fluid{
+   height: 525px;
+   width: 700px;
+ }
  

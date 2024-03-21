@@ -1,40 +1,34 @@
 import React from 'react';
+import { assets } from '../../assets/assets';
+import './Footer.css'
 
 const Footer = () => {
   return (
     <footer className="bg-dark text-white">
-      <div className="container py-5">
+      <div className="container py-2">
         <div className="row">
-          <div className="col-md-3">
-            <h5>Company Name</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <div className="col-md-4">
+          <img src={assets.logo} alt="" width="80" height="80"/>
+            <h5>SkyLine Mall</h5>
           </div>
-          <div className="col-md-3">
-            <h5>Products</h5>
+          <div className="col-md-4">
+            <h5></h5>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-white">MDBootstrap</a></li>
-              <li><a href="#" className="text-white">MDWordPress</a></li>
-              <li><a href="#" className="text-white">BrandFlow</a></li>
-              <li><a href="#" className="text-white">Bootstrap Angular</a></li>
+              <li className='py-2'><a href="#" className="text-white">AboutUs</a></li>
+              <li className='py-2'><a href="#" className="text-white">ContactUs</a></li>
+              <li className='py-2'><a href="#" className="text-white">Events</a></li>
+              <li className='py-2'><a href="#" className="text-white">Shopping</a></li>
             </ul>
           </div>
-          <div className="col-md-3">
-            <h5>Useful Links</h5>
+           
+          <div className="col-md-4">
+            
             <ul className="list-unstyled">
-              <li><a href="#" className="text-white">Your Account</a></li>
-              <li><a href="#" className="text-white">Become an Affiliate</a></li>
-              <li><a href="#" className="text-white">Shipping Rates</a></li>
-              <li><a href="#" className="text-white">Help</a></li>
+              <li className='py-2'><a href="#" className="text-white">42,Galle Road,Colombo</a></li>
+              <li className='py-2'><a href="#" className="text-white">+94 77485955</a></li>
+              <li className='py-2'><a href="#" className="text-white">skylinemall@gmail.com</a></li>
+              
             </ul>
-          </div>
-          <div className="col-md-3">
-            <h5>Contact</h5>
-            <address>
-              New York, NY 10012, US<br />
-              <i className="fas fa-envelope"></i> info@gmail.com<br />
-              <i className="fas fa-phone"></i> +01 234 567 88<br />
-              <i className="fas fa-print"></i> +01 234 567 89
-            </address>
           </div>
         </div>
       </div>
