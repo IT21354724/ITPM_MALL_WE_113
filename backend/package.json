@@ -16,6 +16,10 @@
     "multer": "^1.4.5-lts.1",
     "natural": "^6.12.0",
     "node-emoji": "^2.1.3",
-    "stopword": "^3.0.1"
+    "stopword": "^3.0.1",
+    "axios": "^1.6.8",
+    "emailjs-com": "^3.2.0",
+    "express": "^4.18.3",
+    "validator": "^13.11.0"
   }
 }
