@@ -43,18 +43,18 @@ const ContactUs = () => {
                   <label htmlFor="name" className="form-label">Your Name</label>
                   <input onChange={(e) => {
         setName(e.target.value)}} value={name}
-         type="text" className="form-control form-control-lg" id="name" />
+         type="text" className="form-control form-control-lg" id="name"  required/>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email address</label>
                   <input onChange={(e) => {
-        setEmail(e.target.value)}} value={email} type="email" className="form-control form-control-lg" id="email" />
+        setEmail(e.target.value)}} value={email} type="email" className="form-control form-control-lg" id="email"  required/>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="message" className="form-label">Your Message</label>
                   <textarea onChange={(e) => {
         setMessage(e.target.value)
-        }} value={message} className="form-control form-control-lg" id="message" rows="5"></textarea>
+        }} value={message} className="form-control form-control-lg" id="message" rows="5" required></textarea>
                 </div>
                 <button  type="submit" className="btn btn-primary">Submit</button>
               </form>
