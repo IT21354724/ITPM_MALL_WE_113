@@ -38,22 +38,28 @@ const Feedback = mongoose.model("Feedback",{
     },
 
 })
-app.post('/addfeedback',async (req,res) =>{
-    let feedbacks =await Feedback.find({});
-  const feedback = new Feedback({
-     name:req.body.name,
-     email:req.body.email,
-     message:req.body.message,
-  });
-  console.log(feedback);
-  await feedback.save();
-  console.log("Saved");
-  res.json({
-    success:true,
-    name:req.body.name,
-  })
+app.post('/addfeedback', async (req, res) => {
+    try {
+        const feedback = new Feedback({
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message,
+        });
+        console.log(feedback);
+        await feedback.save();
+        console.log("Saved");
+        res.json({
+            success: true,
+            name: req.body.name,
+        });
+    } catch (error) {
+        console.error('Error saving feedback:', error);
+        res.status(500).json({ success: false, error: 'Failed to save feedback' });
+    }
+});
 
-})
+ 
+  
 
 //Creating API For getting all products
 app.get('/allfeedbacks', async (req, res) => {

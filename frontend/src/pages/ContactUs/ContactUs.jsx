@@ -1,5 +1,6 @@
 import './ContactUs.css'
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const ContactUs = () => {
 
@@ -8,13 +9,27 @@ const ContactUs = () => {
   const [message,setMessage] = useState("");
 
   
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Message:', message);
+     try {
+      const response = await axios.post('http://localhost:4000/addfeedback', {
+        name: name,
+        email: email,
+        message: message
+      });
+      console.log(response.data);
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      console.error('Error:', error);
+    }
     
   };
+   
 
   return (
     <div className="container-m">
@@ -23,24 +38,25 @@ const ContactUs = () => {
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Contact Us</h2>
-              <form>
+              <form  onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Your Name</label>
                   <input onChange={(e) => {
-        setName(e.target.value);}}
+        setName(e.target.value)}} value={name}
          type="text" className="form-control form-control-lg" id="name" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email address</label>
                   <input onChange={(e) => {
-        setEmail(e.target.value);}}type="email" className="form-control form-control-lg" id="email" />
+        setEmail(e.target.value)}} value={email} type="email" className="form-control form-control-lg" id="email" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="message" className="form-label">Your Message</label>
                   <textarea onChange={(e) => {
-        setMessage(e.target.value);}}className="form-control form-control-lg" id="message" rows="5"></textarea>
+        setMessage(e.target.value)
+        }} value={message} className="form-control form-control-lg" id="message" rows="5"></textarea>
                 </div>
-                <button onSubmit={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+                <button  type="submit" className="btn btn-primary">Submit</button>
               </form>
             </div>
           </div>
