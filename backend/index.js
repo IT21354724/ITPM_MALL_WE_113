@@ -6,12 +6,14 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const { SentimentAnalyzer, PorterStemmer, WordTokenizer } = require('natural');
+const { WordTokenizer } = require('natural');
 const { removeStopwords } = require('stopword');
+const Sentiment = require('sentiment');
 
 app.use(express.json());
 app.use(cors());
 const tokenizer = new WordTokenizer();
+const sentiment = new Sentiment();
 //Database connection with MongoDB
 mongoose.connect("mongodb+srv://mall_app113:mayuran123@cluster0.ffs72pv.mongodb.net/mall_app");
 
@@ -64,30 +66,28 @@ app.post('/addfeedback', async (req, res) => {
 //Creating API For getting all products
 app.get('/allfeedbacks', async (req, res) => {
     let feedbacks = await Feedback.find({});
-        let processedTexts = [];
+    let feedbacksWithSentiment = [];
         feedbacks.forEach(feedback => {
             let text = feedback.message.toLowerCase();
 
             const cleanedText = text.replace(/[^\w\s]/g, '');
             const tokenizedText = tokenizer.tokenize(cleanedText);
             const filteredText = removeStopwords(tokenizedText);
-            /**
-             * Tokenization, stop words removal, and sentiment analysis code here
-             */
-            // const tokenizer = new WordTokenizer();
-            // const tokenizedText = tokenizer.tokenize(text);
 
-            // /** Remove stop words */
-            // const filteredText = removeStopwords(tokenizedText);
+            const finalText = filteredText.join(' ');
+            
+            const result = sentiment.analyze(finalText);
 
-            // const analyzer = new SentimentAnalyzer('English', PorterStemmer, 'afinn');
-            // const sentiment = analyzer.getSentiment(filteredText);
-
-            // console.log(sentiment);
-
-            processedTexts.push(filteredText);
+            let sentimentLabel;
+            if (result.score > 0) {
+                sentimentLabel = 'positive';
+            } else if (result.score <= 0) {
+                sentimentLabel = 'negative';
+            }
+            feedbacksWithSentiment.push({ text: text, sentiment: sentimentLabel });
         });
-        res.send(processedTexts);
+    
+        res.json(feedbacksWithSentiment);
 });
 app.listen(port,(error) =>{
      if(!error){
